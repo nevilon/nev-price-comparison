@@ -1,17 +1,16 @@
-let products = JSON.parse(localStorage.getItem('products')) || [];
+let posts = JSON.parse(localStorage.getItem('posts')) || [];
 let editIndex = null;
 
-const productList = document.getElementById('product-list');
-const addProductBtn = document.getElementById('add-product-btn');
-const modal = document.getElementById('product-form-modal');
-const productForm = document.getElementById('product-form');
+const postList = document.getElementById('post-list');
+const addPostBtn = document.getElementById('add-post-btn');
+const modal = document.getElementById('post-form-modal');
+const postForm = document.getElementById('post-form');
 const cancelBtn = document.getElementById('cancel-btn');
 
-// Открыть форму добавления товара
-addProductBtn.addEventListener('click', () => {
+// Открыть форму добавления поста
+addPostBtn.addEventListener('click', () => {
     editIndex = null;
-    document.getElementById('form-title').textContent = 'Добавить товар';
-    productForm.reset();
+    postForm.reset();
     modal.style.display = 'flex';
 });
 
@@ -20,68 +19,51 @@ cancelBtn.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
-// Сохранить товар
-productForm.addEventListener('submit', (e) => {
+// Сохранить пост
+postForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const product = {
-        name: document.getElementById('product-name').value,
-        price: document.getElementById('product-price').value,
-        description: document.getElementById('product-description').value,
-        image: document.getElementById('product-image').value,
-        url: document.getElementById('product-url').value
+    const postText = document.getElementById('post-text').value;
+    const imageUpload = document.getElementById('post-image-upload');
+
+    const post = {
+        text: postText,
+        image: '' // Будет заполнено после загрузки изображения
     };
 
-    if (editIndex !== null) {
-        products[editIndex] = product; // Редактирование
+    // Если выбрано изображение, преобразуем его в base64
+    if (imageUpload.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            post.image = e.target.result; // Сохраняем base64-код изображения
+            savePost(post);
+        };
+        reader.readAsDataURL(imageUpload.files[0]);
     } else {
-        products.push(product); // Добавление
+        savePost(post);
     }
-
-    localStorage.setItem('products', JSON.stringify(products));
-    renderProducts();
-    modal.style.display = 'none';
 });
 
-// Рендер товаров
-function renderProducts() {
-    productList.innerHTML = '';
-    products.forEach((product, index) => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <img src="${product.image || 'https://via.placeholder.com/300'}" alt="${product.name}">
-            <h2>${product.name}</h2>
-            <p class="price">${product.price}</p>
-            <p>${product.description}</p>
-            <div class="actions">
-                <button onclick="editProduct(${index})">Редактировать</button>
-                <button onclick="deleteProduct(${index})">Удалить</button>
-            </div>
+function savePost(post) {
+    posts.unshift(post); // Добавляем пост в начало массива
+    localStorage.setItem('posts', JSON.stringify(posts));
+    renderPosts();
+    modal.style.display = 'none';
+}
+
+// Рендер постов
+function renderPosts() {
+    postList.innerHTML = '';
+    posts.forEach((post, index) => {
+        const postCard = document.createElement('div');
+        postCard.className = 'post-card';
+        postCard.innerHTML = `
+            <div class="text">${post.text}</div>
+            ${post.image ? `<img src="${post.image}" alt="Пост ${index + 1}">` : ''}
         `;
-        productList.appendChild(productCard);
+        postList.appendChild(postCard);
     });
 }
 
-// Редактировать товар
-window.editProduct = (index) => {
-    editIndex = index;
-    const product = products[index];
-    document.getElementById('form-title').textContent = 'Редактировать товар';
-    document.getElementById('product-name').value = product.name;
-    document.getElementById('product-price').value = product.price;
-    document.getElementById('product-description').value = product.description;
-    document.getElementById('product-image').value = product.image;
-    document.getElementById('product-url').value = product.url;
-    modal.style.display = 'flex';
-};
-
-// Удалить товар
-window.deleteProduct = (index) => {
-    products.splice(index, 1);
-    localStorage.setItem('products', JSON.stringify(products));
-    renderProducts();
-};
-
 // Инициализация
-renderProducts();
+renderPosts();

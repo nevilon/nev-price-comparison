@@ -27,6 +27,7 @@ postForm.addEventListener('submit', (e) => {
     const imageUpload = document.getElementById('post-image-upload');
 
     const post = {
+        id: Date.now(), // Уникальный ID поста
         text: postText,
         image: '' // Будет заполнено после загрузки изображения
     };
@@ -54,13 +55,16 @@ function savePost(post) {
 // Рендер постов
 function renderPosts() {
     postList.innerHTML = '';
-    posts.forEach((post, index) => {
+    posts.forEach((post) => {
         const postCard = document.createElement('div');
         postCard.className = 'post-card';
         postCard.innerHTML = `
             <div class="text">${post.text}</div>
-            ${post.image ? `<img src="${post.image}" alt="Пост ${index + 1}">` : ''}
+            ${post.image ? `<img src="${post.image}" alt="Пост">` : ''}
         `;
+        postCard.addEventListener('click', () => {
+            window.location.href = `post.html?id=${post.id}`; // Переход на страницу поста
+        });
         postList.appendChild(postCard);
     });
 }

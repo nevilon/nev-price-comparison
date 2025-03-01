@@ -49,15 +49,28 @@ header h1 {
     cursor: pointer;
 }
 
-.post-card img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
 .post-card .text {
     font-size: 16px;
     line-height: 1.5;
+}
+
+.post-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.post-card .actions button {
+    background-color: #0088cc;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.post-card .actions button:hover {
+    background-color: #0077b3;
 }
 
 .modal {

@@ -9,58 +9,24 @@
 <body>
     <header>
         <h1>NEV</h1>
-        <button onclick="window.location.href = 'index.html';">На главную</button>
+        <button onclick="window.location.href = 'index.html';">Назад</button>
     </header>
 
     <div id="post-content" class="post-content">
         <!-- Пост будет здесь -->
     </div>
 
-    <!-- Контейнер для комментариев -->
     <div id="comments" class="comments-container">
-        <script async 
-            src="https://telegram.org/js/telegram-widget.js?22" 
-            data-telegram-discussion="nenev99" 
-            data-comments-limit="5" 
-            data-colorful="1" 
-            data-color="343638" 
-            data-dark="1" 
-            data-dark-color="FFFFFF">
-        </script>
+        <h2>Комментарии</h2>
+        <div id="comments-list">
+            <!-- Комментарии будут здесь -->
+        </div>
+        <form id="comment-form">
+            <textarea id="comment-text" placeholder="Прокомментировать..." required></textarea>
+            <button type="submit">Отправить</button>
+        </form>
     </div>
 
     <script src="post.js"></script>
-
-    <!-- Встроенные стили внизу страницы -->
-    <style>
-        /* Стили для контейнера комментариев */
-        .comments-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        /* Кастомизация виджета под темную тему */
-        .tg-widget {
-            background-color: #1a1a1a !important;
-            border-radius: 12px !important;
-            padding: 15px !important;
-        }
-
-        .tg-widget__header {
-            color: #fff !important;
-            border-bottom: 1px solid #333 !important;
-        }
-
-        .tg-widget__message {
-            color: #e1e1e1 !important;
-            border-bottom: 1px solid #333 !important;
-        }
-
-        .tg-widget__input {
-            background-color: #2d2d2d !important;
-            color: #fff !important;
-        }
-    </style>
 </body>
 </html>

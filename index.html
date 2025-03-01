@@ -3,45 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сравнение цен</title>
+    <title>NEV Блог</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Сравнение цен на технику</h1>
-        <button id="add-product-btn">Добавить товар</button>
+        <h1>NEV Блог</h1>
+        <button id="add-post-btn">Добавить пост</button>
     </header>
 
-    <div id="product-list" class="product-list">
-        <!-- Товары будут здесь -->
+    <div id="post-list" class="post-list">
+        <!-- Посты будут здесь -->
     </div>
 
-    <!-- Форма добавления/редактирования товара -->
-    <div id="product-form-modal" class="modal">
+    <!-- Форма добавления поста -->
+    <div id="post-form-modal" class="modal">
         <div class="modal-content">
-            <h2 id="form-title">Добавить товар</h2>
-            <form id="product-form">
-                <label for="product-name">Название:</label>
-                <input type="text" id="product-name" required>
+            <h2>Новый пост</h2>
+            <form id="post-form">
+                <label for="post-text">Текст поста:</label>
+                <textarea id="post-text" required></textarea>
 
-                <label for="product-price">Цена:</label>
-                <input type="text" id="product-price" required>
+                <label for="post-image-upload">Изображение (необязательно):</label>
+                <input type="file" id="post-image-upload" accept="image/*">
 
-                <label for="product-description">Описание:</label>
-                <textarea id="product-description"></textarea>
-
-                <label for="product-image">Ссылка на изображение:</label>
-                <input type="text" id="product-image">
-
-                <label for="product-url">Ссылка на товар:</label>
-                <input type="text" id="product-url">
-
-                <button type="submit">Сохранить</button>
-                <button type="button" id="cancel-btn">Отмена</button>
-            </form>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                <button type="submit">Опубликовать</button>
+                <button type="button" id="cancel-btn

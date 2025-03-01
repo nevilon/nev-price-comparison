@@ -24,33 +24,18 @@ postForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const postText = document.getElementById('post-text').value;
-    const imageUpload = document.getElementById('post-image-upload');
 
     const post = {
         id: Date.now(), // Уникальный ID поста
         text: postText,
-        image: '' // Будет заполнено после загрузки изображения
+        comments: []
     };
 
-    // Если выбрано изображение, преобразуем его в base64
-    if (imageUpload.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            post.image = e.target.result; // Сохраняем base64-код изображения
-            savePost(post);
-        };
-        reader.readAsDataURL(imageUpload.files[0]);
-    } else {
-        savePost(post);
-    }
-});
-
-function savePost(post) {
     posts.unshift(post); // Добавляем пост в начало массива
     localStorage.setItem('posts', JSON.stringify(posts));
     renderPosts();
     modal.style.display = 'none';
-}
+});
 
 // Рендер постов
 function renderPosts() {
@@ -60,14 +45,18 @@ function renderPosts() {
         postCard.className = 'post-card';
         postCard.innerHTML = `
             <div class="text">${post.text}</div>
-            ${post.image ? `<img src="${post.image}" alt="Пост">` : ''}
+            <div class="actions">
+                <button onclick="viewPost(${post.id})">Прокомментировать</button>
+            </div>
         `;
-        postCard.addEventListener('click', () => {
-            window.location.href = `post.html?id=${post.id}`; // Переход на страницу поста
-        });
         postList.appendChild(postCard);
     });
 }
+
+// Переход на страницу поста
+window.viewPost = (postId) => {
+    window.location.href = `post.html?id=${postId}`;
+};
 
 // Инициализация
 renderPosts();

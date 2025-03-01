@@ -3,33 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEV</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Telegram-Style Blog</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>NEV</h1>
-        <button id="add-post-btn">Добавить пост</button>
-    </header>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <button class="back-button">Назад</button>
+            </div>
+            <div class="header-center">
+                <span class="chat-title">NEV</span>
+                <span class="chat-members">40 подписчиков</span>
+            </div>
+            <div class="header-right">
+                <img src="user-profile.jpg" alt="User Profile" class="profile-pic">
+            </div>
+        </header>
 
-    <div id="post-list" class="post-list">
-        <!-- Посты будут здесь -->
-    </div>
+        <div class="messages">
+            <!-- Message 1: Map Image -->
+            <div class="message">
+                <img src="map.jpg" alt="Map" class="message-image">
+                <span class="timestamp">6:11:18</span>
+            </div>
 
-    <!-- Форма добавления поста -->
-    <div id="post-form-modal" class="modal">
-        <div class="modal-content">
-            <h2>Новый пост</h2>
-            <form id="post-form">
-                <label for="post-text">Текст поста:</label>
-                <textarea id="post-text" required></textarea>
+            <!-- Message 2: Text with Image -->
+            <div class="message">
+                <div class="message-content">
+                    <p>не смогла смириться со срывом долгостроя</p>
+                    <img src="darth-vader.jpg" alt="Darth Vader" class="message-image">
+                    <p>и куда это вас привлекло? снова ко мне 😏</p>
+                </div>
+                <span class="timestamp">6:11:19</span>
+            </div>
 
-                <button type="submit">Опубликовать</button>
-                <button type="button" id="cancel-btn">Отмена</button>
-            </form>
+            <!-- Message 3: Text with Image -->
+            <div class="message">
+                <div class="message-content">
+                    <p>мы отослали та слайдом</p>
+                    <img src="person.jpg" alt="Person" class="message-image">
+                    <p>а американцы же не скоро узнают саны виноватости</p>
+                </div>
+                <span class="timestamp">6:12:06</span>
+            </div>
         </div>
-    </div>
 
+        <footer>
+            <div class="input-container">
+                <input type="text" id="message-input" placeholder="Публикация">
+                <button id="send-button">▶</button>
+            </div>
+        </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

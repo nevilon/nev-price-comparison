@@ -2,12 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1e1e1e;
+    background-color: #0e0e0e;
     color: #ffffff;
 }
 
 header {
-    background-color: #0088cc;
+    background-color: #1a1a1a;
     color: white;
     padding: 15px;
     text-align: center;
@@ -22,7 +22,7 @@ header h1 {
 }
 
 #add-post-btn {
-    background-color: #00a884;
+    background-color: #0088cc;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -32,7 +32,7 @@ header h1 {
 }
 
 #add-post-btn:hover {
-    background-color: #008c6b;
+    background-color: #0077b3;
 }
 
 .post-list {
@@ -40,8 +40,8 @@ header h1 {
 }
 
 .post-card {
-    background-color: #2d2d2d;
-    border: 1px solid #444;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 15px;
@@ -73,7 +73,7 @@ header h1 {
 }
 
 .modal-content {
-    background-color: #2d2d2d;
+    background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
     width: 90%;
@@ -95,15 +95,15 @@ header h1 {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #444;
+    border: 1px solid #333;
     border-radius: 4px;
-    background-color: #1e1e1e;
+    background-color: #0e0e0e;
     color: #ffffff;
 }
 
 .modal-content button {
     margin-right: 10px;
-    background-color: #00a884;
+    background-color: #0088cc;
     color: white;
     border: none;
     padding: 8px 12px;
@@ -112,5 +112,5 @@ header h1 {
 }
 
 .modal-content button:hover {
-    background-color: #008c6b;
+    background-color: #0077b3;
 }

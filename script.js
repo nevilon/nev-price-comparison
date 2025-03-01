@@ -1,62 +1,27 @@
-let posts = JSON.parse(localStorage.getItem('posts')) || [];
-let editIndex = null;
+document.getElementById('send-button').addEventListener('click', function() {
+    const input = document.getElementById('message-input');
+    const message = input.value.trim();
 
-const postList = document.getElementById('post-list');
-const addPostBtn = document.getElementById('add-post-btn');
-const modal = document.getElementById('post-form-modal');
-const postForm = document.getElementById('post-form');
-const cancelBtn = document.getElementById('cancel-btn');
-
-// Открыть форму добавления поста
-addPostBtn.addEventListener('click', () => {
-    editIndex = null;
-    postForm.reset();
-    modal.style.display = 'flex';
-});
-
-// Закрыть форму
-cancelBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
-
-// Сохранить пост
-postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const postText = document.getElementById('post-text').value;
-
-    const post = {
-        id: Date.now(), // Уникальный ID поста
-        text: postText,
-        comments: []
-    };
-
-    posts.unshift(post); // Добавляем пост в начало массива
-    localStorage.setItem('posts', JSON.stringify(posts));
-    renderPosts();
-    modal.style.display = 'none';
-});
-
-// Рендер постов
-function renderPosts() {
-    postList.innerHTML = '';
-    posts.forEach((post) => {
-        const postCard = document.createElement('div');
-        postCard.className = 'post-card';
-        postCard.innerHTML = `
-            <div class="text">${post.text}</div>
-            <div class="actions">
-                <button onclick="viewPost(${post.id})">Прокомментировать</button>
+    if (message) {
+        const messages = document.querySelector('.messages');
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('message');
+        newMessage.innerHTML = `
+            <div class="message-content">
+                <p>${message}</p>
             </div>
+            <span class="timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
         `;
-        postList.appendChild(postCard);
-    });
-}
+        messages.appendChild(newMessage);
+        input.value = '';
+        
+        // Auto-scroll to the bottom
+        messages.scrollTop = messages.scrollHeight;
+    }
+});
 
-// Переход на страницу поста
-window.viewPost = (postId) => {
-    window.location.href = `post.html?id=${postId}`;
-};
-
-// Инициализация
-renderPosts();
+document.getElementById('message-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        document.getElementById('send-button').click();
+    }
+});

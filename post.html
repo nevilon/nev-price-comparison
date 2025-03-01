@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEV</title>
     <link rel="stylesheet" href="style.css">
-    <script async src="https://telegram.org/js/telegram-widget.js?7" 
-            data-telegram-discussion="nenev99" 
-            data-comments-limit="5" 
-            data-color="FFFFFF" 
-            data-dark="1"></script>
 </head>
 <body>
     <header>
@@ -21,8 +16,17 @@
         <!-- Пост будет здесь -->
     </div>
 
-    <div id="comments">
-        <!-- Комментарии из Telegram -->
+    <!-- Контейнер для комментариев -->
+    <div id="comments" class="comments-container">
+        <script async 
+            src="https://telegram.org/js/telegram-widget.js?22" 
+            data-telegram-discussion="nenev99" 
+            data-comments-limit="5" 
+            data-colorful="1" 
+            data-color="343638" 
+            data-dark="1" 
+            data-dark-color="FFFFFF">
+        </script>
     </div>
 
     <script src="post.js"></script>
